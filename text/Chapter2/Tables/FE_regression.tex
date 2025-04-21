@@ -1,0 +1,27 @@
+\begin{table}[!htbp] \centering
+  \caption{Forecast Error Regression}
+  \label{tab:fe_regression}
+  \begin{adjustbox}{width=\textwidth}
+\begin{tabular}{@{\extracolsep{5pt}}lcccccccc}
+\\[-1.8ex]\hline
+\hline \\[-1.8ex]
+\\[-1.8ex] & \multicolumn{1}{c}{JF} & \multicolumn{1}{c}{JF LowEdu} & \multicolumn{1}{c}{JF MidEdu} & \multicolumn{1}{c}{JF HighEdu} & \multicolumn{1}{c}{JS} & \multicolumn{1}{c}{JS LowEdu} & \multicolumn{1}{c}{JS MidEdu} & \multicolumn{1}{c}{JS HighEdu}  \\
+\hline \\[-1.8ex]
+ Constant & -0.027$^{***}$ & -0.027$^{***}$ & -0.038$^{***}$ & -0.024$^{***}$ & 0.003$^{*}$ & 0.076$^{***}$ & 0.079$^{***}$ & 0.051$^{***}$ \\
+  & (0.004) & (0.007) & (0.005) & (0.004) & (0.002) & (0.009) & (0.010) & (0.009) \\
+ lag\_FE\_jf & 0.256$^{***}$ & 0.545$^{***}$ & 0.272$^{***}$ & 0.183$^{**}$ & & & & \\
+  & (0.087) & (0.076) & (0.084) & (0.088) & & & & \\
+ lag\_FE\_js & & & & & 0.131$^{}$ & 0.202$^{**}$ & 0.267$^{***}$ & 0.554$^{***}$ \\
+  & & & & & (0.091) & (0.089) & (0.088) & (0.075) \\
+\hline \\[-1.8ex]
+ Observations & 121 & 124 & 124 & 124 & 121 & 124 & 124 & 124 \\
+ $R^2$ & 0.068 & 0.295 & 0.079 & 0.034 & 0.017 & 0.040 & 0.070 & 0.308 \\
+ Adjusted $R^2$ & 0.060 & 0.289 & 0.071 & 0.026 & 0.009 & 0.032 & 0.062 & 0.302 \\
+ F Statistic & 8.628$^{***}$  & 51.049$^{***}$  & 10.452$^{***}$  & 4.297$^{**}$  & 2.062$^{}$  & 5.103$^{**}$  & 9.197$^{***}$  & 54.322$^{***}$  \\
+\hline
+\hline \\[-1.8ex]
+ & \multicolumn{8}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\
+\end{tabular}
+\end{adjustbox}
+\floatfoot{\footnotesize{The table reports the auto-regression results of average and various education groups' respective average forecast errors of expectations of job finding and separation rate with their respective 3-month-lagged values, as defined in Equation \ref{eq:forecast_error_autoreg}.}}
+\end{table}
