@@ -20,6 +20,38 @@
 \pdfminorversion=5
 \pdfobjcompresslevel=2
 
+\usepackage[utf8]{inputenc}   % allow UTF‑8 input
+\usepackage[T1]{fontenc}    
+
+
+\usepackage{tikz}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{ae,aecompl}
+\usepackage{setspace,fullpage,placeins}
+\usepackage{graphicx,subcaption}
+\usepackage{booktabs}
+\usepackage{multirow}
+%\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{afterpage}
+\usepackage{pdflscape}
+\usepackage{threeparttable}
+\usepackage{tikz}
+\usepackage{import}
+\usepackage{adjustbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{palatino}
+\usepackage{floatrow}
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
+\usepackage{natbib}
+
+
+
+\usepackage{mathtools}
+\usepackage{comment}
+\usepackage{xcolor}
+
 % Needed to create a PDF/A file
 \usepackage[a-1b]{pdfx}
 
@@ -50,13 +82,22 @@
 \usepackage{soul}
 
 % Set the margins according to JHU specifications
+%\usepackage{geometry}
+% \geometry{
+%   letterpaper,
+%   left=1.5in,
+%   right=1.0in,
+ %  top=1.0in,
+ %  bottom=1.0in}
+
+
+% Set the margins according to JHU specifications
 \usepackage{geometry}
- \geometry{
-   letterpaper,
-   left=1.5in,
-   right=1.0in,
-   top=1.0in,
-   bottom=1.0in}
+
+\geometry{
+  letterpaper,
+  margin=1in  % or use left/right/top/bottom symmetrically
+}
 
 % Spacing options
 \usepackage{setspace}
@@ -214,19 +255,32 @@
 % FOR BIBLATEX
 %%%%%%%%%%%%%%%%%%
 
-\usepackage[
-style = nature, 
-sorting = none, 
+%\usepackage[
+%style = nature, 
+%sorting = none, 
+
+
 %dashed = false,
 %maxbibnames = 99,
-backend = biber,
-url=false,
-isbn=false,
-natbib = true
-]{biblatex}
+
+
+
+
+%backend = biber,
+%url=false,
+%isbn=false,
+%natbib = true
+%]{biblatex}
+
+
 
 % Point to bibfile
-\addbibresource{classics.bib}
+%\addbibresource{classics.bib}
+% Point to bibfile
+%\addbibresource{reference_CH1.bib}
+
+
+
 
 % If you want to exclude some portions from the bibliography
 %\AtEveryBibitem{
@@ -236,7 +290,7 @@ natbib = true
 %}
 
 % Change bib font size
-\renewcommand{\bibfont}{\small}
+%\renewcommand{\bibfont}{\small}
 
 %%%%%%%%%%%%%%%%%%
 % DOI from Segmentation (needs hyperref)
@@ -269,6 +323,11 @@ natbib = true
 %%%%%%%%%%%
 %
 \begin{document}
+
+\bibliographystyle{plainnat}
+
+\bibliography{reference_CH1}
+
 % Sets paragraph (and not title) spacing, roughly speaking
 \setlength{\parskip}{3pt}
 \baselineskip=24pt
@@ -346,7 +405,11 @@ natbib = true
 %
 %%% BIBLATEX BIBLIOGRAPHY %%%
 %\footnotesize
-\printbibliography[title={References},heading=bibintoc]
+
+
+%\printbibliography[title={References},heading=bibintoc]
+
+
 %
 %%% BIBTEX BIBLIOGRAPHY %%%
 %
