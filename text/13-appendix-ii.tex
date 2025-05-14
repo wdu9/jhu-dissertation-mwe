@@ -170,17 +170,13 @@ Instead of calculating peak-to-trough values of job risks as in Figure \ref{fig:
 
 \subsection{Heterogeneous Agent model with Unemployment}\label{appendix:model}
 
-There is a continuum of households of mass 1 indexed by $i$ who face both idiosyncratic permanent and transitory income shocks, and stochastic transitions between employment states. A household is either employed or unemployed and is indexed by $n_{it}$. Employed households ($n_{it} = 1$) separate from employment with probability $JS_{t}$. Households separated this period who fail to find a job enter unemployment in the next period. Unemployed workers find a job with probability, $JF_{t}$. Households receive unemployment insurance for two quarters. During unemployment, households find employment with probability $\eta_{t} $. Finally, households are subject to a constant probability of death $D$. 
+The model is partial equilibrium and only consists of households. In particular, there is a continuum of workers of mass 1 indexed by $i$ who face both idiosyncratic shocks to labor productivity, and stochastic transitions between employment states. A worker is either employed or unemployed. Their employment state is indexed by $n_{it}$. Employed households ($n_{it} = 1$) separate from employment with probability $JS_{t}$. Unemployed workers find a job with probability, $JF_{t}$. Workers receive unemployment insurance.
 
-%Finally, there are five ex-ante heterogeneous discount factors, $\beta_{i} \in \{\beta^{k}\}_{k=1}^{5}$, uniformly distributed across households. These discount factors are estimated to match the Lorenz curve for liquid wealth and the mean liquid wealth to income ratio from the 2004 Survey of Consumer Finances, following \cite{carroll2017distribution}.\footnote{I assume five discount factors are ex-ante uniformly distributed with mean $\bar{\beta}$ and standard deviation $\nabla$ across households. $\bar{\beta}$ and $\nabla$ are jointly estimated to target the mean liquid wealth to permanent income ratio and Lorenz curve at the 20th, 40th, 60th, and 80th percentiles. } After all shocks and transitions are realized, households choose to consume and save into government bonds. 
-
-
-%Employed households ($n_{it} = 1$) receive a wage $w_{t}$ that is taxed at rate $\tau_{t}$, and separate from employment with probability $JS_{t}$. 
 
 
 The Bellman problem is:
 
-$$    v_{t}\left(\mathbf{m}_{it} , \mathbf{p}_{it}, n_{it}  \right)  =  \max_{\{\mathbf{c}_{it} , \mathbf{a}_{it}\}} \{U\left(\mathbf{c}_{it})\right)  + \beta (1 - D) \mathrm{E_{t}} \left[ v_{t+1}\left( \mathbf{m}_{t+1}, \mathbf{p}_{it+1}, n_{it+1} \right)\right] \}
+$$    v_{t}\left(\mathbf{m}_{it} , e_{it}, n_{it}  \right)  =  \max_{\{\mathbf{c}_{it} , \mathbf{a}_{it}\}} \{U\left(\mathbf{c}_{it})\right)  + \beta \mathrm{E_{t}} \left[ v_{t+1}\left( \mathbf{m}_{t+1},e_{it+1}, n_{it+1} \right)\right] \}
 $$ 
 
 
@@ -188,33 +184,25 @@ subject to the budget constraint
 
 \begin{align*}
 \mathbf{a}_{it}     &= \mathbf{m}_{it} - \mathbf{c}_{it}    \\
-\mathbf{a}_{it} +\mathbf{c}_{it}    &= \mathbf{z}_{it} +   (1 + r^{a}_{t} ) \mathbf{a}_{it-1} \\ 
+\mathbf{a}_{it} +\mathbf{c}_{it}    &= \mathbf{z}_{it} +   (1 + r_{t} ) \mathbf{a}_{it-1} \\ 
 \mathbf{a}_{it}  &\geq 0 \\
 \end{align*}
 
 
 
 where
- $\mathbf{m}_{it}$ \ denotes market resources to be expended on consumption or saved into government bonds. $\mathbf{c}_{it}$ is the level of consumption and $ \mathbf{a}_{it}$ is the value of government bonds where the return is $r_{t+1}^{a}$.  $\mathbf{m}_{it}$ is determined by labor income,  $\mathbf{z}_{it}$, and the gross return on assets from the last period, $(1+r_{t}^{a}) \mathbf{a}_{it-1} $. $D$ is the probability of death and $\beta_{i}$ is the discount factor.
-
-%$U\left(\cLevBF_{i t}\right) = \frac{\cLevBF_{i t}^{1-\rho}}{1 -\rho} $  and
-
-Labor income is composed of permanent income $p_{it}$ and (un)employment income $\zeta_{it}$.
-
-\begin{comment}
-$$\mathbf{z}_{it} = \mathbf{p}_{it}\zeta_{it}\theta_{it} h_{it}$$ \\
-\end{comment}
-
-$$\mathbf{z}_{it} = \mathbf{p}_{it}\zeta_{it}$$
-
-Permanent income is subject to shocks, $\mathbf{p}_{it+1}$ where $\psi_{it}$ is iid mean one lognormal with standard deviation $\sigma_\psi$ .
-\begin{align*}
-\mathbf{p}_{it+1} &=\mathbf{p}_{it} \psi_{it+1} 
-\end{align*}
+ $\mathbf{m}_{it}$ \ denotes market resources to be expended on consumption or saved into a risk free asset, $ \mathbf{a}_{it}$. $\mathbf{c}_{it}$ is the level of consumption and the return to the asset at time $t$ is $r_{t}$.  $\mathbf{m}_{it}$ is determined by labor income,  $\mathbf{z}_{it}$, and the gross return on assets from the last period, $(1+r_{t}) \mathbf{a}_{it-1} $. $\beta$ is the discount factor.
 
 
 
-%As documented in \cite{kekre2023unemployment}, non-UI income makes up a large proportion of the income of the unemployed. This income is likely supplemented by a spouse as an "added worker effect", or other social insurance programs such as SNAPS \citep{mckay2021optimal}.  In order to capture these non-UI income sources, I follow \cite{kekre2023unemployment} and assume (Un)Employment income follows   
+Worker $i$'s at time $t$ labor income is composed of their labor productivity $e_{it}$ and of their un(employment) income $\zeta_{it}$. In particular, labor income, $\mathbf{z}_{i,t}$, follows
+
+$$\mathbf{z}_{i,t} = e_{i,t}\zeta_{it}$$
+$$ \log e_{i,t} = \rho_{e} \log e_{i,t-1} + \eta_{i,t}, \quad \eta_{i,t} \sim \mathcal{N}(0, \sigma^2_e)$$
+
+
+
+We assume labor productivity, $e_{it}$, follows an AR(1) process with persistence $\rho_{e}$ and a standard deviation $\sigma_e$. 
 
 (Un)Employment income, $\zeta_{i,t}$ depends on the employment status $n_{i,t}$ between employment and unemployment.   
 
@@ -222,21 +210,56 @@ $$
 \zeta _{it} =
 \begin{cases}
 \theta_{it} , \  \text{if employed}  : n_{i,t}=e\\ \\
-\gamma, \  \text{if unemployed}: n_{i,t}=u  %\\ \\
+\theta_{it}\gamma, \  \text{if unemployed}: n_{i,t}=u  %\\ \\
 %\gamma_{2}, \ \text{if unemployed for more than two quarters}: n_{i,t}=u 
 \end{cases}
 $$ 
 
 where $\theta_{it}$ is iid mean one lognormal with standard deviation $\sigma_\theta$. 
-$\gamma$ is the replacement ratio of an unemployment insurance, which is set to be 0.5. Our benchmark model does not consider the expiration of unemployment insurance as in \cite{kekre2023unemployment}.\footnote{\cite{kekre2023unemployment} estimates the income ratios during unemployment relative to pre-displacement with and without unemployment insurance to be 0.76 and 0.55, respectively.} 
+$\gamma$ is the replacement ratio of an unemployment insurance. 
 
-The employment status $n_{i,t}$ transitions between two states following a 2-state Markov process. Its transition probabilities are jointly determined by job-finding $JF_{i,t}$ and job separation $JS_{i,t}$ rates. The e-to-u and u-to-e probabilities are, respectively, the following. 
-
-
+Transitions between employment states follows a markov process. In particular, the e-to-u and u-to-e probabilities are, respectively, the following. 
 \begin{align*}
  & p(n_{i,t+1}=e|n_{i,t}=u) = JF_{t} \\
-& p(n_{i,t+1}=u|n_{i,t}=e) = JS_{t} (1  - JF_{t} )
+& p(n_{i,t+1}=u|n_{i,t}=e) = JS_{t}
 \end{align*}
+
+where $JF_{t}$ is the probability of finding a job and a $JS_{t}$ is the job separation probability. We calibrate these probabilities using the observed transition rates between employment and unemployment estimated from the Current Population Survey.
+
+Worker beliefs are dictated by the same Markov process as above however the values of probabilities finding and separating from a job may differ. In particular, denote variables with a tilde as worker beliefs on those variable
+\begin{align*}
+ & \tilde{p(n_{i,t+1}=e|n_{i,t}=u)} = \tilde{JF_{t}} \\
+& \tilde{p(n_{i,t+1}=u|n_{i,t}=e)} = \tilde{JS_{t}}
+\end{align*}
+
+We calibrate these perceived probabilities with our measure of perceived risk or our measure of objective risk.
+
+
+
+The calibration of the model is described in table \ref{table:Calibration}.
+
+\begin{center}\renewcommand{\arraystretch}{1.5}
+\begin{table}
+\centering
+\caption{Household Calibration}\label{table:Calibration}
+\makebox[\textwidth]{\begin{tabular}{|c|ccl|c|}
+\hline
+Description                     & \multicolumn{1}{c}{Parameter} & Value & \multicolumn{2}{c|}{Source/Target }\\ \hline
+CRRA & \multicolumn{1}{c}{CRRA} & 2 & \multicolumn{2}{c|}{Standard} \\
+Real Interest Rate                 & \multicolumn{1}{c}{$r$} & $1.05^{\frac{1}{12}} - 1$ & \multicolumn{2}{c|}{ 5\% annualized real rate} \\
+ \hline
+UI replacement rate& \multicolumn{1}{c}{$\gamma$} & 0.5 & \multicolumn{2}{c|}{ 50$\%$ replacement rate} \\
+Persistence of idiosyncratic income process & \multicolumn{1}{c}{$\rho_{e}$} & 0.997 & \multicolumn{2}{c|}{\cite{kekre2023unemployment}} \\
+Std Dev of idiosyncratic income process & \multicolumn{1}{c}{$\sigma_{e}$} & 0.057 & \multicolumn{2}{c|}{\cite{kekre2023unemployment}} \\
+Std Dev of Log Transitory Shock & \multicolumn{1}{c}{$\sigma_{\theta}$} & 0.244 & \multicolumn{2}{c|}{\cite{kekre2023unemployment}} \\  \hline
+
+Steady state Job Finding Rate & \multicolumn{1}{c}{$JF$} & 0.25 & \multicolumn{2}{c|}{CPS} \\ 
+Steady state Job Separation Rate& \multicolumn{1}{c}{$JS$} & 0.017 & \multicolumn{2}{c|}{CPS} \\  \hline
+Discount Factor & \multicolumn{1}{c}{$\beta$} &  0.988 & \multicolumn{2}{c|}{Quarterly MPC = 0.21} \\  \hline
+\end{tabular}}
+\end{table}
+\end{center}
+
 
 
 
@@ -245,7 +268,7 @@ The employment status $n_{i,t}$ transitions between two states following a 2-sta
 \subsection{Details of the model experiments}
 \label{appendix:model_results}
 
-\subsubsection{Baseline model at the quarterly frequency}
+\subsubsection{Baseline model at the monthly frequency}
 
 The model experiments in Figure \ref{fig:pe_decompose_sub_obj} are based on directly estimated shocks to $JF$/$JS$, $\widetilde{JF}/\widetilde{JS}$ and ${JF}^*/{JS}^*$. To obtain such shocks, we estimate, respectively, a quarterly AR(1) model of each one of these sequences in the sample period up to the 2020 Q1. The predicted residuals are the estimated shocks to realized rates, beliefs, and rational job risk, which are plotted in Figure \ref{fig:shocks_from_data}. 
 
@@ -315,66 +338,149 @@ Discount Factor & \multicolumn{1}{c}{$\beta$} &  0.976 & \multicolumn{2}{c|}{Qua
 \end{center}
 
 
-\subsubsection{Alternative model experiment at monthly frequency}
+\subsubsection{Alternative model experiment at quarterly frequency}
 
-In this section, we report results from the baseline model experiments with a monthly version of the model with several modifications, which is calibrated similarly to \cite{kekre2023unemployment}. Since working with a quarterly model inevitably involves time-aggregation of monthly job flow rates and their belief counterparts, we see a monthly model as more robust to our assumptions on the time-aggregation. In particular, we replace the permanent wage component with a persistent component with a monthly AR(1) coefficient of 0.997, and a standard deviation of the shock of 0.057. We use steady-state monthly job finding rate to be 0.2517, the sample average from CPS before Covid era. 
 
-Modifying the quarterly model assumption, we also assume that employment-to-unemployment transition is entirely driven by job separations, e.g.  $p(n_{i,t+1}=u|n_{i,t}=e) = JS_{t})$. We set its average to be 0.017. The discount factor beta is estimated to yield a quarterly MPC of 0.21, a la \cite{kekre2023unemployment}.  Figure \ref{fig:pe_decompose_sub_obj_monthly} shows the results with homogeneous workers, and Figure \ref{fig:pe_decompose_sub_obj_educ_monthly} shows that with heterogeneous risks by education.
+
+In this section, we report results from the baseline model experiments with a quarterly version of the model with several modifications.
+
+
+%$U\left(\cLevBF_{i t}\right) = \frac{\cLevBF_{i t}^{1-\rho}}{1 -\rho} $  and
+
+Labor income is composed of permanent income $p_{it}$ and (un)employment income $\zeta_{it}$.
+
+\begin{comment}
+$$\mathbf{z}_{it} = \mathbf{p}_{it}\zeta_{it}\theta_{it} h_{it}$$ \\
+\end{comment}
+
+$$\mathbf{z}_{it} = \mathbf{p}_{it}\zeta_{it}$$
+
+Permanent income is subject to shocks, $\mathbf{p}_{it+1}$ where $\psi_{it}$ is iid mean one lognormal with standard deviation $\sigma_\psi$ .
+\begin{align*}
+\mathbf{p}_{it+1} &=\mathbf{p}_{it} \psi_{it+1} 
+\end{align*}
+
+
+
+%As documented in \cite{kekre2023unemployment}, non-UI income makes up a large proportion of the income of the unemployed. This income is likely supplemented by a spouse as an "added worker effect", or other social insurance programs such as SNAPS \citep{mckay2021optimal}.  In order to capture these non-UI income sources, I follow \cite{kekre2023unemployment} and assume (Un)Employment income follows   
+
+(Un)Employment income, $\zeta_{i,t}$ depends on the employment status $n_{i,t}$ between employment and unemployment.   
+
+$$
+\zeta _{it} =
+\begin{cases}
+\theta_{it} , \  \text{if employed}  : n_{i,t}=e\\ \\
+\gamma, \  \text{if unemployed}: n_{i,t}=u  %\\ \\
+%\gamma_{2}, \ \text{if unemployed for more than two quarters}: n_{i,t}=u 
+\end{cases}
+$$ 
+
+where $\theta_{it}$ is iid mean one lognormal with standard deviation $\sigma_\theta$. 
+$\gamma$ is the replacement ratio of an unemployment insurance, which is set to be 0.5. Our benchmark model does not consider the expiration of unemployment insurance as in \cite{kekre2023unemployment}.\footnote{\cite{kekre2023unemployment} estimates the income ratios during unemployment relative to pre-displacement with and without unemployment insurance to be 0.76 and 0.55, respectively.} 
+
+The employment status $n_{i,t}$ transitions between two states following a 2-state Markov process. Its transition probabilities are jointly determined by job-finding $JF_{i,t}$ and job separation $JS_{i,t}$ rates. The e-to-u and u-to-e probabilities are, respectively, the following. 
+
+
+\begin{align*}
+ & p(n_{i,t+1}=e|n_{i,t}=u) = JF_{t} \\
+& p(n_{i,t+1}=u|n_{i,t}=e) = JS_{t} (1  - JF_{t} )
+\end{align*}
+
+The calibration of the quarterly version of the model is described in the table below:
+
+\begin{center}\renewcommand{\arraystretch}{1.5}
+\begin{table}
+\centering
+\caption{Household Calibration in Model at Quarterly Frequency}\label{table:Calibration quarterly}
+\makebox[\textwidth]{\begin{tabular}{|c|ccl|c|}
+\hline
+Description                     & \multicolumn{1}{c}{Parameter} & Value & \multicolumn{2}{c|}{Source/Target }\\ \hline
+CRRA & \multicolumn{1}{c}{CRRA} & 2 & \multicolumn{2}{c|}{Standard} \\
+Real Interest Rate                 & \multicolumn{1}{c}{$r$} & $1.03^{.25} - 1$ & \multicolumn{2}{c|}{ 3\% annualized real rate} \\
+Probability of Death       & \multicolumn{1}{c}{$D$} & 0.00625 & \multicolumn{2}{c|}{\cite{carroll2017distribution}} \\
+ \hline
+
+
+UI replacement rate& \multicolumn{1}{c}{$\gamma$} & 0.5 & \multicolumn{2}{c|}{ 50$\%$ income drop at unemployment} \\
+%Non UI income parameter 1 &  \multicolumn{1}{c}{$\gamma_{1}$} & 0.76 & \multicolumn{2}{c|}{ \cite{kekre2023unemployment} }\\
+%Non UI income parameter 2 &  \multicolumn{1}{c}{$\gamma_{2}$} & 0.55 & \multicolumn{2}{c|}{\cite{kekre2023unemployment}} \\
+%Gov. transfers &  \multicolumn{1}{c}{$T_{s}$} & 0.091 & \multicolumn{2}{c|}{\begin{footnotesize} $\frac{\text{SNAPS and Soc. Security Inc}}{\text{Pre Job Loss Income}} = .13$ \end{footnotesize}} \\
+Std Dev of Log Permanent Shock  & \multicolumn{1}{c}{$\sigma_{\psi}$} & 0.06 & \multicolumn{2}{c|}{\cite{carroll2017distribution}} \\
+Std Dev of Log Transitory Shock & \multicolumn{1}{c}{$\sigma_{\theta}$} & 0.2 & \multicolumn{2}{c|}{\cite{carroll2017distribution}} \\  \hline
+
+Steady state Job Finding Rate & \multicolumn{1}{c}{$JF$} & 0.58 & \multicolumn{2}{c|}{CPS} \\ 
+Steady state Job Separation Rate& \multicolumn{1}{c}{$JS$} & 0.070 & \multicolumn{2}{c|}{steady state unemployment rate=0.05} \\  \hline
+Discount Factor & \multicolumn{1}{c}{$\beta$} &  0.976 & \multicolumn{2}{c|}{Quarterly MPC = 0.16} \\  \hline
+\end{tabular}}
+\end{table}
+\end{center}
+
+
+
+
+
 
 \begin{figure}[ht]
     \centering
-    \caption{\textbf{Monthly} Consumption Fluctuations due to Unemployment Risks}
+    \caption{\textbf{Quarterly} Consumption Fluctuations due to Unemployment Risks}
     \label{fig:pe_decompose_sub_obj_monthly}
 
     \begin{subfigure}{0.32\linewidth}
          \caption*{Job separation}
-        \includegraphics[width=\linewidth]{text/Chapter2/Figures/consumption_pe_JS_deviation_machine_as_rational_monthly.pdf}
+        \includegraphics[width=\linewidth]{text/chapter2/Figures/consumption_pe_JS_deviation_machine_as_rational.pdf}
    
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.32\linewidth}
          \caption*{Job finding}
-        \includegraphics[width=\linewidth]{text/Chapter2/Figures/consumption_pe_JF_deviation_machine_as_rational_monthly.pdf}
+        \includegraphics[width=\linewidth]{text/chapter2/Figures/consumption_pe_JF_deviation_machine_as_rational.pdf}
    
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.32\linewidth}
          \caption*{Combined}
-        \includegraphics[width=\linewidth]{text/Chapter2/Figures/consumption_pe_JS_JF_deviation_machine_as_rational_monthly.pdf}
+        \includegraphics[width=\linewidth]{text/chapter2/Figures/consumption_pe_JS_JF_deviation_machine_as_rational.pdf}
    
     \end{subfigure}
 
     \begin{flushleft}
         \footnotesize 
-        Note: The figure compares the partial-equilibrium aggregate consumption deviations from its steady state simulated based on empirically estimated shocks to perceived job risk (subjective) and the real-time forecast risk (objective), in addition to the ex-post response to shocks to the realized job transition rates. The results are from a monthly variation of the baseline model set at the quarterly frequency.
+        Note: The figure compares the partial-equilibrium aggregate consumption deviations from its steady state simulated based on empirically estimated shocks to perceived job risk (subjective) and the real-time forecast risk (objective), in addition to the ex-post response to shocks to the realized job transition rates. The results are from a quarterly variation of the baseline model set at the monthly frequency.
     \end{flushleft}
 \end{figure}
 
   \begin{figure}[ht]
     \centering
-    \caption{\textbf{Monthly} Consumption Fluctuations due to Unemployment Risks: by Education}
+    \caption{\textbf{Quarterly} Consumption Fluctuations due to Unemployment Risks: by Education}
     \label{fig:pe_decompose_sub_obj_educ_monthly}
 
     \begin{subfigure}{0.32\linewidth}
      \caption*{Low Education}
-        \includegraphics[width=\linewidth]{text/Chapter2/Figures/consumption_pe_JS_JF_deviation_machine_as_rational_LowEdu_monthly.pdf}
-       
+        \includegraphics[width=\linewidth]{text/chapter2/Figures/consumption_pe_JS_JF_deviation_machine_as_rational_LowEdu.pdf}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.32\linewidth}
      \caption*{Middle Education}
-        \includegraphics[width=\linewidth]{text/Chapter2/Figures/consumption_pe_JS_JF_deviation_machine_as_rational_MidEdu_monthly.pdf}
+        \includegraphics[width=\linewidth]{text/chapter2/Figures/consumption_pe_JS_JF_deviation_machine_as_rational_MidEdu.pdf}
        
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.32\linewidth}
       \caption*{High Education}
-        \includegraphics[width=\linewidth]{text/Chapter2/Figures/consumption_pe_JS_JF_deviation_machine_as_rational_HighEdu_monthly.pdf}
+        \includegraphics[width=\linewidth]{text/chapter2/Figures/consumption_pe_JS_JF_deviation_machine_as_rational_HighEdu.pdf}
       
     \end{subfigure}
 
     \begin{flushleft}
         \footnotesize 
-        Note: The figure compares for each education group their partial-equilibrium aggregate consumption deviations from its steady state simulated based on empirically estimated shocks to perceived job risk (subjective) and the real-time forecast risk (objective), in addition to the ex-post response to shocks to the realized job transition rates. The results are from the monthly version of the baseline model with modified assumptions.
+        Note: The figure compares for each education group their partial-equilibrium aggregate consumption deviations from its steady state simulated based on empirically estimated shocks to perceived job risk (subjective) and the real-time forecast risk (objective), in addition to the ex-post response to shocks to the realized job transition rates. The results are from the quarterly version of the baseline model with modified assumptions.
     \end{flushleft}
 \end{figure}
+
+
+
+
+
+
+
+

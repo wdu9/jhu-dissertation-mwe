@@ -7,7 +7,7 @@
 In this section, I quantify the extent to which unemployment scarring explains the sluggish recovery from the Great Recession. In particular, I demonstrate that unemployment scarring explains a large share of the sluggish recovery from the Great Recession. To illustrate this, I simulate consumption and output during and after The Great Recession by estimating a sequence of negative demand shocks that allows the model to match the path of unemployment from 2008 to 2018. I perform this exercise in both the baseline HANK model with scarring and the HANK model without scarring. I then compare the untargeted paths of consumption and output to their empirical counterparts. I use data on consumption (real PCE), output (Real GDP), prices (PCE deflator), nominal wages (average earnings of private production employees), real hourly and real aggregate labor compensation (labor compensation from wages and salaries). I de-trend each series from the first quarter of 1990 to the last quarter of 2019 and then scale them down such that they represent deviations from the first quarter of 2008. 
 
 
-\begin{figure}[H]
+\begin{figure}[t]
 \begin{center}
 \begin{minipage}{0.5\textwidth}
 \includegraphics[scale=.5]{text/chapter1/Figures/GR_sim/DiscFacShks}
@@ -31,7 +31,7 @@ In this section, I quantify the extent to which unemployment scarring explains t
 For the estimation, I follow \cite{kekre2023} and jointly estimate a sequence of discount factor shocks to match the path of unemployment from 2008 to 2018 monetary policy shocks to account for the zero lower bound. I use discount factor shocks for parsimony as the goal of this exercise is not to answer what caused The Great Recession but to answer why did The Great Recession lead to such a slow recovery\footnote{The same simulation exercise can be reproduced with shocks to the household borrowing limit or to the job separation rate and would not affect the results below as unemployment scarring is present in the responses to all aggregate shocks in the model.}. For these discount factor shocks, I set the fiscal adjustment parameter to $\phi_{b} = 0.015$, the lower bound of the estimates documented by  \cite{AuclertMicroJumpsMacroHumps}, and assume that the government cannot adjust taxes for 40 quarters to obtain a more accurate assessment of the effects of the Great Recession on debt. When estimating these discount factor shocks, I assume all discount factors follow an AR(1) with quarterly persistence 0.95. As noted in \cite{kekre2023}, the chosen AR(1) persistence does not alter the results as a different persistence will alter the estimated sequences of shocks but not the path of unemployment as that is what is targeted. The monetary policy shocks are assumed to have no persistence. I repeat this procedure over a grid of different wage rigidities $\phi_{w}$ and choose the wage rigidity parameter that minimizes the squared distance between the response of price index and its counterpart in the data. To capture the effects of unemployment scarring, I repeat this procedure for the version of the model where unemployment scarring is turned off in the same manner as in section 6. 
 
 
-\begin{figure}[H] % "[t!]" placement specifier just for this example
+\begin{figure}[] % "[t!]" placement specifier just for this example
 \centering
 \begin{minipage}{0.51\textwidth}
 \includegraphics[scale=.55]{text/chapter1/Figures/GR_sim/Urate}
